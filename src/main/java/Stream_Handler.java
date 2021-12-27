@@ -10,14 +10,14 @@ public class Stream_Handler {
         Stream<Map.Entry<String, Integer>> entries_stream = entries.stream();
         return entries_stream;
     }
-    public Stream<Integer> get_quantity_stream(HashMap item_map){
-        Collection<Integer> quantity = item_map.values();
-        Stream<Integer> quantity_stream = quantity.stream();
+    public Stream<Double> get_value_stream(HashMap item_map){
+        Collection<Double> quantity = item_map.values();
+        Stream<Double> quantity_stream = quantity.stream();
         return quantity_stream;
     }
-    public Stream<String> get_item_stream(HashMap item_map){
-        Set<String> item_set = item_map.keySet();
-        Stream<String> item_stream = item_set.stream();
+    public Stream<Integer> get_key_stream(HashMap item_map){
+        Set<Integer> item_set = item_map.keySet();
+        Stream<Integer> item_stream = item_set.stream();
         return item_stream;
     }
 }
