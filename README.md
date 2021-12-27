@@ -57,8 +57,8 @@ Calculation_Handler: Responsible for calculating and logging
 ### How to run the program
 Using JDK8 with IDEA 
 or using JDK8 with command lines: 
-$ javac Bundle_Calculator.java
-$ java Bundle_Calculator
+1. javac Bundle_Calculator.java
+2. java Bundle_Calculator
 
 
 
