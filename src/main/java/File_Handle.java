@@ -1,10 +1,12 @@
+import lombok.extern.java.Log;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
-
+@Log
 public class File_Handle {
     public HashMap<String, Integer> read_input_file(String file_name) throws IOException {
         HashMap<String, Integer> item_map = new HashMap<String, Integer>();
@@ -12,7 +14,7 @@ public class File_Handle {
         try {// create a new file if the file does not exist
             if (!file.exists()) {
                 file.createNewFile();
-                System.out.println("A new file is created!!!");
+                log.info("A new file is created!!!");
             }
             String line;
             BufferedReader file_reader = new BufferedReader(new FileReader(file));
@@ -39,7 +41,7 @@ public class File_Handle {
         try {// create a new file if the file does not exist
             if (!file.exists()) {
                 file.createNewFile();
-                System.out.println("A new file is created!!!");
+                log.info("A new file is created!!!");
             }
             String line;
             BufferedReader file_reader = new BufferedReader(new FileReader(file));

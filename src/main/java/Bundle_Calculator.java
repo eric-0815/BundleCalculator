@@ -1,12 +1,17 @@
+import lombok.*;
+import lombok.extern.java.Log;
+
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.*;
 
 
+
+@Log
 public class Bundle_Calculator {
-    static Logger logger = Logger.getLogger(String.valueOf(Bundle_Calculator.class));
-    private static Double Bundle_Calculator(String target_item, int target_quantity, HashMap<Integer,Double> quantity_price_map) {
+    //static Logger logger = Logger.getLogger(String.valueOf(Bundle_Calculator.class));
+    private static Double Bundle_Calculator(@NonNull String target_item, int target_quantity, HashMap<Integer,Double> quantity_price_map) {
         Stream_Handler stream_handler = new Stream_Handler();
         List<Integer> quantity_list;
         List<Double> price_list;
@@ -58,7 +63,7 @@ public class Bundle_Calculator {
                 padding = padding +"\n"+"        "+entry.getKey().toString() + " x " + entry.getValue().toString() + " $" + quantity_price_map.get(entry.getKey());
             }
         }
-        logger.info(target_quantity+" "+target_item+" "+final_price+'\n'+"        "+padding);
+        log.info(target_quantity+" "+target_item+" "+final_price+'\n'+"        "+padding);
     }
 
     public static void main(String[] args) throws IOException{
