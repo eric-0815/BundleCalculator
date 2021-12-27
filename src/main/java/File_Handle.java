@@ -2,10 +2,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class File_Handle {
-    public HashMap<String, Integer> read_file(String file_name) throws IOException {
+    public HashMap<String, Integer> read_input_file(String file_name) throws IOException {
         HashMap<String, Integer> item_map = new HashMap<String, Integer>();
         File file = new File(file_name);
         try {// create a new file if the file does not exist
@@ -31,5 +32,39 @@ public class File_Handle {
             e.printStackTrace();
         }
         return item_map;
+    }
+
+    public void read_price_file(String file_name, String type, HashMap<String, Double> map) throws IOException {
+        HashMap<String, Integer> item_map = new HashMap<String, Integer>();
+        File file = new File(file_name);
+        try {// create a new file if the file does not exist
+            if (!file.exists()) {
+                file.createNewFile();
+                System.out.println("A new file is created!!!");
+            }
+            String line;
+            BufferedReader file_reader = new BufferedReader(new FileReader(file));
+            while ((line = file_reader.readLine()) != null) {
+                int startIndex = 4;
+                int endIndex = line.split(" ").length;
+                String[] sliced_line = Arrays.copyOfRange(line.split(" "), startIndex, endIndex);
+                if(line.split(" ")[2].equals(type)){
+                    load_price(sliced_line, map);
+                }
+
+            }
+            file_reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void load_price (String[] line, HashMap<String, Double> map){
+        //long symbol_count = line.chars().filter(symbol -> symbol == '@').count();
+        List<String> line_without_symbol = Arrays.stream(line).filter(x -> !x.equals("@")).collect(Collectors.toList());
+        System.out.println(line_without_symbol);
+        for(int i=0; i<line_without_symbol.size(); i=i+2){
+            map.put(line_without_symbol.get(i), Double.valueOf(line_without_symbol.get(i+1).replace("$","")));
+        }
     }
 }
