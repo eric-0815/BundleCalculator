@@ -12,12 +12,9 @@ public class Calculation_Handler {
     public Double calculation(@NonNull String target_item, int target_quantity, HashMap<Integer,Double> quantity_price_map) {
         Stream_Handler stream_handler = new Stream_Handler();
         List<Integer> quantity_list;
-        List<Double> price_list;
 
         quantity_list = stream_handler.get_key_stream(quantity_price_map).collect(Collectors.toList());
         Collections.sort(quantity_list, Collections.reverseOrder());
-        //System.out.println(quantity_list);
-        //price_list = stream_handler.get_value_stream(quantity_price_map).collect(Collectors.toList());
         Double final_price;
         HashMap<Integer, Integer> result_map = new HashMap<Integer, Integer>();
         List<Integer> result_list = quantity_list.stream()
@@ -34,13 +31,9 @@ public class Calculation_Handler {
                     for(int k=1; k < 9; k++){
                         int calculated_quantity = quantity_list.get(i)*(i+1)+quantity_list.get(j)*(k);
                         if(calculated_quantity == target_quantity && !got_target_quantity){
-                            //System.out.println(quantity_list.get(i).toString()+" * "+(i+1)+" + "+quantity_list.get(j).toString()+" * " +(k));
-                            //System.out.println("target_quantity is : "+target_quantity);
                             final_price = (quantity_price_map.get(quantity_list.get(i))*(i+1)+quantity_price_map.get(quantity_list.get(j))*(k));
                             result_map.put(quantity_list.get(i),i+1);
                             result_map.put(quantity_list.get(j),k);
-                            //System.out.println(quantity_list.get(i)+" "+ (i+1));
-                            //System.out.println(quantity_list.get(j)+" "+ k);
                             got_target_quantity = true;
                             log_function(target_item, target_quantity,quantity_price_map, result_map, final_price);
                             break;

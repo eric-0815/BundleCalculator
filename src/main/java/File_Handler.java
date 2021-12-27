@@ -26,7 +26,7 @@ public class File_Handler {
                     String item_name = parts[1];
                     item_map.put(item_name, quantity);
                 } else {
-                    System.out.println("Please check your input format");
+                    log.warning("Please check your input format");
                 }
             }
             file_reader.close();
@@ -37,12 +37,6 @@ public class File_Handler {
     }
 
     public void read_price_file(@NonNull String file_name, String type, HashMap<Integer, Double> map) throws IOException {
-        /*System.out.println("file_name: "+file_name);
-        System.out.println("String type: "+type);
-        for (Map.Entry<Integer, Double> entry : map.entrySet()) {
-            System.out.println("MAP: "+entry.getKey()+" "+ entry.getValue());
-        }*/
-
         HashMap<String, Integer> item_map = new HashMap<String, Integer>();
         File file = new File(file_name);
         try {// create a new file if the file does not exist
@@ -67,7 +61,6 @@ public class File_Handler {
     }
 
     private void load_price (String[] line, HashMap<Integer, Double> map){
-        //long symbol_count = line.chars().filter(symbol -> symbol == '@').count();
         List<String> line_without_symbol = Arrays.stream(line)
                 .filter(x -> !x.equals("@"))
                 .collect(Collectors.toList());
