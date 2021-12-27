@@ -1,4 +1,3 @@
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -10,11 +9,7 @@ public class Stream_Handler {
         Stream<Map.Entry<String, Integer>> entries_stream = entries.stream();
         return entries_stream;
     }
-    public Stream<Double> get_value_stream(HashMap item_map){
-        Collection<Double> quantity = item_map.values();
-        Stream<Double> quantity_stream = quantity.stream();
-        return quantity_stream;
-    }
+
     public Stream<Integer> get_key_stream(HashMap item_map){
         Set<Integer> item_set = item_map.keySet();
         Stream<Integer> item_stream = item_set.stream();

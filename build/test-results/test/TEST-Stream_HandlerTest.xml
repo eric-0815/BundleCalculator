@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Stream_HandlerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-12-27T23:02:02" hostname="DESKTOP-78AAAKK" time="0.02">
+  <properties/>
+  <testcase name="get_entries_stream()" classname="Stream_HandlerTest" time="0.02"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Dec 28, 2021 10:02:02 AM Stream_HandlerTest setUp
+INFO: @@Stream_HandlerTest.setUp #17: setUp
+Dec 28, 2021 10:02:02 AM Stream_HandlerTest tearDown
+INFO: @@Stream_HandlerTest.tearDown #22: tearDown
+]]></system-err>
+</testsuite>

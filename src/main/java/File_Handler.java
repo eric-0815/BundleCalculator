@@ -1,3 +1,4 @@
+import lombok.NonNull;
 import lombok.extern.java.Log;
 
 import java.io.BufferedReader;
@@ -7,7 +8,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 @Log
-public class File_Handle {
+public class File_Handler {
     public HashMap<String, Integer> read_input_file(String file_name) throws IOException {
         HashMap<String, Integer> item_map = new HashMap<String, Integer>();
         File file = new File(file_name);
@@ -35,7 +36,13 @@ public class File_Handle {
         return item_map;
     }
 
-    public void read_price_file(String file_name, String type, HashMap<Integer, Double> map) throws IOException {
+    public void read_price_file(@NonNull String file_name, String type, HashMap<Integer, Double> map) throws IOException {
+        /*System.out.println("file_name: "+file_name);
+        System.out.println("String type: "+type);
+        for (Map.Entry<Integer, Double> entry : map.entrySet()) {
+            System.out.println("MAP: "+entry.getKey()+" "+ entry.getValue());
+        }*/
+
         HashMap<String, Integer> item_map = new HashMap<String, Integer>();
         File file = new File(file_name);
         try {// create a new file if the file does not exist
