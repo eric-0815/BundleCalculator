@@ -10,17 +10,13 @@ import java.util.stream.Collectors;
 @Getter
 public class AllBundles {
     ArrayList<EachBundle> allBundleArrayList = new ArrayList<EachBundle>();
-    public void addBundle(EachBundle eachBundle){
+
+    public void addBundle(EachBundle eachBundle) {
         allBundleArrayList.add(eachBundle);
     }
 
-    public void reverseOrderArrayList(){
-        allBundleArrayList.sort(Comparator.comparing(EachBundle::getBundleQuantity));
-        Collections.reverse(allBundleArrayList);
-    }
-
-    private ArrayList<EachBundle> sameFormatCodeHelper(String formatCode){
-        ArrayList<EachBundle> sameFormatCodeArrayList = new ArrayList<EachBundle>();
+    private ArrayList<EachBundle> sameFormatCodeHelper(String formatCode) {
+        ArrayList<EachBundle> sameFormatCodeArrayList;
         sameFormatCodeArrayList = (ArrayList<EachBundle>) allBundleArrayList.stream().
                 filter(x -> x.getBundleFormatCode().equals(formatCode)).
                 collect(Collectors.toList());
@@ -30,24 +26,23 @@ public class AllBundles {
     }
 
 
-    public ArrayList<EachBundle> getIMGArrayList(){
-        ArrayList<EachBundle> IMGArrayList = new ArrayList<EachBundle>();
-        IMGArrayList = sameFormatCodeHelper("IMG");
-        return IMGArrayList;
+    public ArrayList<EachBundle> getIMGBundleList() {
+        ArrayList<EachBundle> IMGBundleList;
+        IMGBundleList = sameFormatCodeHelper("IMG");
+        return IMGBundleList;
     }
 
-    public ArrayList<EachBundle> getFlacArrayList(){
-        ArrayList<EachBundle> FlacArrayList = new ArrayList<EachBundle>();
-        FlacArrayList = sameFormatCodeHelper("Flac");
-        return FlacArrayList;
+    public ArrayList<EachBundle> getFlacBundleList() {
+        ArrayList<EachBundle> FlacBundleList;
+        FlacBundleList = sameFormatCodeHelper("Flac");
+        return FlacBundleList;
     }
 
-    public ArrayList<EachBundle> getVIDArrayList(){
-        ArrayList<EachBundle> VIDArrayList = new ArrayList<EachBundle>();
-        VIDArrayList = sameFormatCodeHelper("VID");
-        return VIDArrayList;
+    public ArrayList<EachBundle> getVIDBundleList() {
+        ArrayList<EachBundle> VIDBundleList;
+        VIDBundleList = sameFormatCodeHelper("VID");
+        return VIDBundleList;
     }
-
 
 
 }

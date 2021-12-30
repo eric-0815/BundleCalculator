@@ -1,10 +1,7 @@
 import lombok.extern.java.Log;
-import model.AllBundles;
-import model.EachBundle;
-import model.EachOrder;
+import model.*;
 
 import java.io.IOException;
-import java.util.*;
 
 
 @Log
@@ -12,18 +9,21 @@ public class BundleCalculator {
     public static void main(String[] args) throws IOException {
         String inputFile = "inputFile.TXT";
         String priceFile = "priceFile.TXT";
-
-
+        String outputFile = "outFile.TXT";
         // Use FileHandler to open files
-        FileReader fileReader = new FileReader();
-        ArrayList <EachOrder> allOrdersArrayList = fileReader.readInputFile(inputFile);
-        AllBundles allBundles = fileReader.readPriceFile(priceFile);
+        InputReader inputReader = new InputReader();
+        AllOrders allOrders = inputReader.readInputFile(inputFile);
+        AllBundles allBundles = inputReader.readPriceFile(priceFile);
 
         Calculation calculation = new Calculation();
+        AllBundleResult allBundleResult = new AllBundleResult();
+        calculation.priceCalculator(allBundleResult, allOrders.getIMGOrderList(), allBundles.getIMGBundleList());
+        calculation.priceCalculator(allBundleResult, allOrders.getFlacOrderList(), allBundles.getFlacBundleList());
+        calculation.priceCalculator(allBundleResult, allOrders.getVIDOrderList(), allBundles.getVIDBundleList());
 
-        String imgResult = calculation.priceCalculator(allOrdersArrayList, allBundles.getIMGArrayList());
-        String FlacResult = calculation.priceCalculator(allOrdersArrayList, allBundles.getFlacArrayList());
-        String VIDResult = calculation.priceCalculator(allOrdersArrayList, allBundles.getVIDArrayList());
+        OutputWriter fileWriter = new OutputWriter();
+
+        fileWriter.writeFile(allBundleResult, outputFile);
 
     }
 }
