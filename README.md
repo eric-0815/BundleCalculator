@@ -54,7 +54,7 @@ InputReader: Responsible for reading files (inputFile.TXT and priceFile.TXT) and
 Calculation: Responsible for calculating results.
 OutputWriter: Responsible for writing an output file.
 
-Other classes: AllBundleResult, AllBundles, AllOrders, EachBundle, EachBundleResult, EachOrder are used to store data and manipulate them.
+Other classes: Result, Bundle, Order, ResultItem, BundleItem, OrderItem are used to store data and manipulate them.
 ```
 
 ### How to run the program
