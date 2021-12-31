@@ -1,6 +1,6 @@
-import model.AllBundleResult;
 import model.Bundle;
 import model.Order;
+import model.Result;
 
 import java.io.IOException;
 
@@ -16,12 +16,12 @@ public class BundleCalculator {
         Bundle allBundles = inputReader.readPriceFile(priceFile);
 
         Calculation calculation = new Calculation();
-        AllBundleResult allBundleResult = new AllBundleResult();
-        calculation.priceCalculator(allBundleResult, order.getIMGOrderList(), allBundles.getIMGBundleList());
-        calculation.priceCalculator(allBundleResult, order.getFlacOrderList(), allBundles.getFlacBundleList());
-        calculation.priceCalculator(allBundleResult, order.getVIDOrderList(), allBundles.getVIDBundleList());
+        Result result = new Result();
+        calculation.priceCalculator(result, order.getIMGOrderList(), allBundles.getIMGBundleList());
+        calculation.priceCalculator(result, order.getFlacOrderList(), allBundles.getFlacBundleList());
+        calculation.priceCalculator(result, order.getVIDOrderList(), allBundles.getVIDBundleList());
 
         OutputWriter fileWriter = new OutputWriter();
-        fileWriter.writeFile(allBundleResult, outputFile);
+        fileWriter.writeFile(result, outputFile);
     }
 }

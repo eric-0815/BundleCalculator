@@ -1,6 +1,6 @@
-import model.AllBundleResult;
 import model.BundleItem;
 import model.OrderItem;
+import model.Result;
 import model.ResultItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +11,7 @@ import java.util.*;
 public class Calculation {
     private static final Logger logger = LogManager.getLogger(Calculation.class);
 
-    public void priceCalculator(AllBundleResult allBundleResult, ArrayList<OrderItem> orderArrayList, ArrayList<BundleItem> bundleArrayList) {
+    public void priceCalculator(Result result, ArrayList<OrderItem> orderArrayList, ArrayList<BundleItem> bundleArrayList) {
 
         ResultItem eachBundleResult = null;
         boolean gotResult = false;
@@ -42,7 +42,7 @@ public class Calculation {
                             calculationProcessMap.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.reverseOrder())).forEachOrdered(x -> reverseCalculationProcessMap.put(x.getKey(), x.getValue()));
 
                             eachBundleResult = new ResultItem(orderFormatCode, orderQuantity, finalPrice, priceList, reverseCalculationProcessMap);
-                            allBundleResult.addBundleResult(eachBundleResult);
+                            result.addResult(eachBundleResult);
                             gotResult = true;
                         }
                     }

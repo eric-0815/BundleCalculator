@@ -26,10 +26,10 @@ public class BundleCalculatorTest {
         assertEquals(allBundles.getAllBundleArrayList(), Arrays.asList(allBundleListTest));
 
         Calculation calculation = new Calculation();
-        AllBundleResult allBundleResult = new AllBundleResult();
-        calculation.priceCalculator(allBundleResult, order.getIMGOrderList(), allBundles.getIMGBundleList());
-        calculation.priceCalculator(allBundleResult, order.getFlacOrderList(), allBundles.getFlacBundleList());
-        calculation.priceCalculator(allBundleResult, order.getVIDOrderList(), allBundles.getVIDBundleList());
+        Result result = new Result();
+        calculation.priceCalculator(result, order.getIMGOrderList(), allBundles.getIMGBundleList());
+        calculation.priceCalculator(result, order.getFlacOrderList(), allBundles.getFlacBundleList());
+        calculation.priceCalculator(result, order.getVIDOrderList(), allBundles.getVIDBundleList());
 
         ArrayList<Double> imgPriceListTest = new ArrayList<>();
         imgPriceListTest.add(800.0);
@@ -53,12 +53,12 @@ public class BundleCalculatorTest {
         ResultItem[] allBundleResultsTest = new ResultItem[]{new ResultItem("IMG", 10, 800.0, imgPriceListTest, imgCalculationMap), new ResultItem("FLAC", 15, 1957.5, flacPriceListTest, flacCalculationMap), new ResultItem("VID", 13, 2370.0, vidPriceListTest, vidCalculationMap)};
 
         // Test AllBundleResult
-        for (int i = 0; i < allBundleResult.getAllBundleResultArrayList().size(); i++) {
-            assertEquals(allBundleResult.getAllBundleResultArrayList().get(i).getResultFormatCode(), Arrays.asList(allBundleResultsTest).get(i).getResultFormatCode());
-            assertEquals(allBundleResult.getAllBundleResultArrayList().get(i).getResultQuantity(), Arrays.asList(allBundleResultsTest).get(i).getResultQuantity());
-            assertEquals(allBundleResult.getAllBundleResultArrayList().get(i).getResultPrice(), Arrays.asList(allBundleResultsTest).get(i).getResultPrice());
-            assertEquals(allBundleResult.getAllBundleResultArrayList().get(i).getPriceList(), Arrays.asList(allBundleResultsTest).get(i).getPriceList());
-            assertEquals(allBundleResult.getAllBundleResultArrayList().get(i).getCalculationProcessMap(), Arrays.asList(allBundleResultsTest).get(i).getCalculationProcessMap());
+        for (int i = 0; i < result.getAllBundleResultArrayList().size(); i++) {
+            assertEquals(result.getAllBundleResultArrayList().get(i).getResultFormatCode(), Arrays.asList(allBundleResultsTest).get(i).getResultFormatCode());
+            assertEquals(result.getAllBundleResultArrayList().get(i).getResultQuantity(), Arrays.asList(allBundleResultsTest).get(i).getResultQuantity());
+            assertEquals(result.getAllBundleResultArrayList().get(i).getResultPrice(), Arrays.asList(allBundleResultsTest).get(i).getResultPrice());
+            assertEquals(result.getAllBundleResultArrayList().get(i).getPriceList(), Arrays.asList(allBundleResultsTest).get(i).getPriceList());
+            assertEquals(result.getAllBundleResultArrayList().get(i).getCalculationProcessMap(), Arrays.asList(allBundleResultsTest).get(i).getCalculationProcessMap());
         }
 
     }

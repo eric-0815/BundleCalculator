@@ -1,4 +1,4 @@
-import model.AllBundleResult;
+import model.Result;
 import model.ResultItem;
 
 import java.io.BufferedWriter;
@@ -10,9 +10,9 @@ import java.util.Map;
 
 
 public class OutputWriter {
-    public void writeFile(AllBundleResult allBundleResult, String fileName) {
+    public void writeFile(Result result, String fileName) {
         File file = new File(fileName);
-        ArrayList<ResultItem> allBundleResultArrayList = allBundleResult.getAllBundleResultArrayList();
+        ArrayList<ResultItem> allBundleResultArrayList = result.getAllBundleResultArrayList();
         BufferedWriter bufferedWriter = null;
         String resultText = null;
         try { // iterate the HashMap and write into the file
@@ -21,7 +21,7 @@ public class OutputWriter {
                 ResultItem eachBundleResult = allBundleResultArrayList.get(i);
                 resultText = eachBundleResult.getResultQuantity() + " " + eachBundleResult.getResultFormatCode() + " $" + eachBundleResult.getResultPrice();
                 int index = 0;
-                for (Map.Entry entry : allBundleResult.getAllBundleResultArrayList().get(i).getCalculationProcessMap().entrySet()) {
+                for (Map.Entry entry : result.getAllBundleResultArrayList().get(i).getCalculationProcessMap().entrySet()) {
                     resultText = resultText + "\n  " + entry.getValue() + " x " + entry.getKey() + " $" + eachBundleResult.getPriceList().get(index++);
                 }
                 resultText = resultText + "\n";
