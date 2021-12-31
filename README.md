@@ -1,4 +1,4 @@
-# Bundle_Calculator
+# BundleCalculator
  
 ## Context
 Social media Influencers have been basing the price of their social media post on a single post basis. So If a brand required 10 posts (for example spread over a period) then they would be charged 10x the cost of a single post. One company has decided to allow social media influencers to sell posts in bundles and charge the brand on a per bundle basis. So if the Influencer sold image based posts in bundles of 5 and 10 and brand ordered 15 they would get a bundle of 10 and a bundle of 5.
@@ -46,12 +46,15 @@ A successfully passing test(s) that demonstrates the following output: (The form
 
 
 ### Solution idea
+#### classes
 My design idea is divided this application into four classes:
 ```
-Bundle_Calculator: The primary part of this project.
-File_Handler: Responsible for reading files (bundle.TXT and price_info.TXT) and putting data into HashMap 
-Stream_Handler: Responsible for returning stream data structure
-Calculation_Handler: Responsible for calculating and logging 
+BundleCalculator: The primary part of this project.
+InputReader: Responsible for reading files (inputFile.TXT and priceFile.TXT) and putting data into classes
+Calculation: Responsible for calculating results.
+OutputWriter: Responsible for writing an output file.
+
+Other classes: AllBundleResult, AllBundles, AllOrders, EachBundle, EachBundleResult, EachOrder are used to store data and manipulate them.
 ```
 
 ### How to run the program
