@@ -7,11 +7,11 @@ import java.util.HashMap;
 
 @Getter
 public class EachBundleResult {
-    private String resultFormatCode;
-    private int resultQuantity;
-    private Double resultPrice;
-    private HashMap<Integer, Integer> calculationProcessMap;
-    private ArrayList<Double> priceList;
+    private final String resultFormatCode;
+    private final int resultQuantity;
+    private final Double resultPrice;
+    private final HashMap<Integer, Integer> calculationProcessMap;
+    private final ArrayList<Double> priceList;
 
     public EachBundleResult(String resultFormatCode, int resultQuantity, Double resultPrice, ArrayList<Double> priceList, HashMap<Integer, Integer> calculationProcessMap) {
         this.resultFormatCode = resultFormatCode;

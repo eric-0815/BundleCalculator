@@ -15,9 +15,7 @@ public class AllOrders {
 
     private ArrayList<EachOrder> sameFormatCodeHelper(String formatCode) {
         ArrayList<EachOrder> sameFormatCodeArrayList = new ArrayList<EachOrder>();
-        sameFormatCodeArrayList = (ArrayList<EachOrder>) allOrderArrayList.stream().
-                filter(x -> x.getOrderFormatCode().equals(formatCode)).
-                collect(Collectors.toList());
+        sameFormatCodeArrayList = (ArrayList<EachOrder>) allOrderArrayList.stream().filter(x -> x.getOrderFormatCode().equals(formatCode)).collect(Collectors.toList());
         return sameFormatCodeArrayList;
     }
 

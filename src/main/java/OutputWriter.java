@@ -1,4 +1,3 @@
-import lombok.ToString;
 import model.AllBundleResult;
 import model.EachBundleResult;
 
@@ -23,14 +22,14 @@ public class OutputWriter {
                 resultText = eachBundleResult.getResultQuantity() + " " + eachBundleResult.getResultFormatCode() + " $" + eachBundleResult.getResultPrice();
                 int index = 0;
                 for (Map.Entry entry : allBundleResult.getAllBundleResultArrayList().get(i).getCalculationProcessMap().entrySet()) {
-                    resultText = resultText + "\n  " + entry.getValue() + " x " + entry.getKey() + " " + eachBundleResult.getPriceList().get(index++);
+                    resultText = resultText + "\n  " + entry.getValue() + " x " + entry.getKey() + " $" + eachBundleResult.getPriceList().get(index++);
                 }
                 resultText = resultText + "\n";
                 bufferedWriter.write(resultText);
             }
             bufferedWriter.flush();
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }

@@ -17,9 +17,7 @@ public class AllBundles {
 
     private ArrayList<EachBundle> sameFormatCodeHelper(String formatCode) {
         ArrayList<EachBundle> sameFormatCodeArrayList;
-        sameFormatCodeArrayList = (ArrayList<EachBundle>) allBundleArrayList.stream().
-                filter(x -> x.getBundleFormatCode().equals(formatCode)).
-                collect(Collectors.toList());
+        sameFormatCodeArrayList = (ArrayList<EachBundle>) allBundleArrayList.stream().filter(x -> x.getBundleFormatCode().equals(formatCode)).collect(Collectors.toList());
         sameFormatCodeArrayList.sort(Comparator.comparing(EachBundle::getBundleQuantity));
         Collections.reverse(sameFormatCodeArrayList);
         return sameFormatCodeArrayList;
