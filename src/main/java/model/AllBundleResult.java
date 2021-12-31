@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 @Getter
 public class AllBundleResult {
-    ArrayList<EachBundleResult> allBundleResultArrayList = new ArrayList<>();
+    ArrayList<ResultItem> allBundleResultArrayList = new ArrayList<>();
 
-    public void addBundleResult(EachBundleResult eachBundleResult) {
+    public void addBundleResult(ResultItem eachBundleResult) {
         allBundleResultArrayList.add(eachBundleResult);
     }
 }

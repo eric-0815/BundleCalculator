@@ -15,21 +15,21 @@ public class BundleCalculatorTest {
         String priceFile = "priceFile.TXT";
         // Use FileHandler to open files
         InputReader inputReader = new InputReader();
-        AllOrders allOrders = inputReader.readInputFile(inputFile);
-        EachOrder[] allOrderListTest = new EachOrder[]{new EachOrder(10, "IMG"), new EachOrder(15, "FLAC"), new EachOrder(13, "VID")};
+        Order order = inputReader.readInputFile(inputFile);
+        OrderItem[] allOrderListTest = new OrderItem[]{new OrderItem(10, "IMG"), new OrderItem(15, "FLAC"), new OrderItem(13, "VID")};
         // Test AllOrder
-        assertEquals(allOrders.getAllOrderArrayList(), Arrays.asList(allOrderListTest));
+        assertEquals(order.getAllOrderArrayList(), Arrays.asList(allOrderListTest));
 
-        AllBundles allBundles = inputReader.readPriceFile(priceFile);
-        EachBundle[] allBundleListTest = new EachBundle[]{new EachBundle("IMG", 5, 450.0), new EachBundle("IMG", 10, 800.0), new EachBundle("Flac", 3, 427.5), new EachBundle("Flac", 6, 810.0), new EachBundle("Flac", 9, 1147.5), new EachBundle("VID", 3, 570.0), new EachBundle("VID", 5, 900.0), new EachBundle("VID", 9, 1530.0)};
+        Bundle allBundles = inputReader.readPriceFile(priceFile);
+        BundleItem[] allBundleListTest = new BundleItem[]{new BundleItem("IMG", 5, 450.0), new BundleItem("IMG", 10, 800.0), new BundleItem("Flac", 3, 427.5), new BundleItem("Flac", 6, 810.0), new BundleItem("Flac", 9, 1147.5), new BundleItem("VID", 3, 570.0), new BundleItem("VID", 5, 900.0), new BundleItem("VID", 9, 1530.0)};
         // Test AllBundle
         assertEquals(allBundles.getAllBundleArrayList(), Arrays.asList(allBundleListTest));
 
         Calculation calculation = new Calculation();
         AllBundleResult allBundleResult = new AllBundleResult();
-        calculation.priceCalculator(allBundleResult, allOrders.getIMGOrderList(), allBundles.getIMGBundleList());
-        calculation.priceCalculator(allBundleResult, allOrders.getFlacOrderList(), allBundles.getFlacBundleList());
-        calculation.priceCalculator(allBundleResult, allOrders.getVIDOrderList(), allBundles.getVIDBundleList());
+        calculation.priceCalculator(allBundleResult, order.getIMGOrderList(), allBundles.getIMGBundleList());
+        calculation.priceCalculator(allBundleResult, order.getFlacOrderList(), allBundles.getFlacBundleList());
+        calculation.priceCalculator(allBundleResult, order.getVIDOrderList(), allBundles.getVIDBundleList());
 
         ArrayList<Double> imgPriceListTest = new ArrayList<>();
         imgPriceListTest.add(800.0);
@@ -50,7 +50,7 @@ public class BundleCalculatorTest {
         vidCalculationMap.put(3, 1);
         vidCalculationMap.put(5, 2);
 
-        EachBundleResult[] allBundleResultsTest = new EachBundleResult[]{new EachBundleResult("IMG", 10, 800.0, imgPriceListTest, imgCalculationMap), new EachBundleResult("FLAC", 15, 1957.5, flacPriceListTest, flacCalculationMap), new EachBundleResult("VID", 13, 2370.0, vidPriceListTest, vidCalculationMap)};
+        ResultItem[] allBundleResultsTest = new ResultItem[]{new ResultItem("IMG", 10, 800.0, imgPriceListTest, imgCalculationMap), new ResultItem("FLAC", 15, 1957.5, flacPriceListTest, flacCalculationMap), new ResultItem("VID", 13, 2370.0, vidPriceListTest, vidCalculationMap)};
 
         // Test AllBundleResult
         for (int i = 0; i < allBundleResult.getAllBundleResultArrayList().size(); i++) {

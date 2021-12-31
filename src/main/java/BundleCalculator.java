@@ -1,6 +1,6 @@
 import model.AllBundleResult;
-import model.AllBundles;
-import model.AllOrders;
+import model.Bundle;
+import model.Order;
 
 import java.io.IOException;
 
@@ -12,14 +12,14 @@ public class BundleCalculator {
         String outputFile = "outputFile.TXT";
         // Use FileHandler to open files
         InputReader inputReader = new InputReader();
-        AllOrders allOrders = inputReader.readInputFile(inputFile);
-        AllBundles allBundles = inputReader.readPriceFile(priceFile);
+        Order order = inputReader.readInputFile(inputFile);
+        Bundle allBundles = inputReader.readPriceFile(priceFile);
 
         Calculation calculation = new Calculation();
         AllBundleResult allBundleResult = new AllBundleResult();
-        calculation.priceCalculator(allBundleResult, allOrders.getIMGOrderList(), allBundles.getIMGBundleList());
-        calculation.priceCalculator(allBundleResult, allOrders.getFlacOrderList(), allBundles.getFlacBundleList());
-        calculation.priceCalculator(allBundleResult, allOrders.getVIDOrderList(), allBundles.getVIDBundleList());
+        calculation.priceCalculator(allBundleResult, order.getIMGOrderList(), allBundles.getIMGBundleList());
+        calculation.priceCalculator(allBundleResult, order.getFlacOrderList(), allBundles.getFlacBundleList());
+        calculation.priceCalculator(allBundleResult, order.getVIDOrderList(), allBundles.getVIDBundleList());
 
         OutputWriter fileWriter = new OutputWriter();
         fileWriter.writeFile(allBundleResult, outputFile);

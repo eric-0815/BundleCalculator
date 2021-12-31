@@ -4,11 +4,11 @@ import lombok.Data;
 
 
 @Data
-public class EachOrder {
+public class OrderItem {
     private int orderQuantity;
     private String orderFormatCode;
 
-    public EachOrder(int orderQuantity, String orderFormatCode) {
+    public OrderItem(int orderQuantity, String orderFormatCode) {
         this.orderQuantity = orderQuantity;
         this.orderFormatCode = orderFormatCode;
     }

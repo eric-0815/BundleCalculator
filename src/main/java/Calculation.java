@@ -1,7 +1,7 @@
 import model.AllBundleResult;
-import model.EachBundle;
-import model.EachBundleResult;
-import model.EachOrder;
+import model.BundleItem;
+import model.OrderItem;
+import model.ResultItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,9 +11,9 @@ import java.util.*;
 public class Calculation {
     private static final Logger logger = LogManager.getLogger(Calculation.class);
 
-    public void priceCalculator(AllBundleResult allBundleResult, ArrayList<EachOrder> orderArrayList, ArrayList<EachBundle> bundleArrayList) {
+    public void priceCalculator(AllBundleResult allBundleResult, ArrayList<OrderItem> orderArrayList, ArrayList<BundleItem> bundleArrayList) {
 
-        EachBundleResult eachBundleResult = null;
+        ResultItem eachBundleResult = null;
         boolean gotResult = false;
         int calculatedQuantity = 0;
         Double finalPrice = 0.0;
@@ -41,7 +41,7 @@ public class Calculation {
                             HashMap<Integer, Integer> reverseCalculationProcessMap = new LinkedHashMap<>();
                             calculationProcessMap.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.reverseOrder())).forEachOrdered(x -> reverseCalculationProcessMap.put(x.getKey(), x.getValue()));
 
-                            eachBundleResult = new EachBundleResult(orderFormatCode, orderQuantity, finalPrice, priceList, reverseCalculationProcessMap);
+                            eachBundleResult = new ResultItem(orderFormatCode, orderQuantity, finalPrice, priceList, reverseCalculationProcessMap);
                             allBundleResult.addBundleResult(eachBundleResult);
                             gotResult = true;
                         }

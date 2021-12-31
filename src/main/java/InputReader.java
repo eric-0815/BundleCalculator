@@ -1,8 +1,8 @@
 import lombok.Data;
-import model.AllBundles;
-import model.AllOrders;
-import model.EachBundle;
-import model.EachOrder;
+import model.Bundle;
+import model.BundleItem;
+import model.Order;
+import model.OrderItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,24 +17,24 @@ import java.util.stream.Collectors;
 public class InputReader {
     private static final Logger logger = LogManager.getLogger(Calculation.class);
 
-    public AllOrders readInputFile(String fileName) throws IOException {
-        AllOrders allOrders = new AllOrders();
+    public Order readInputFile(String fileName) throws IOException {
+        Order order = new Order();
         BufferedReader fileReader = readFile(fileName);
         String line;
         while ((line = fileReader.readLine()) != null) {
             String[] parts = line.split(" ");
             if (parts.length == 2) {
-                allOrders.addOrder(new EachOrder(Integer.parseInt(parts[0]), parts[1]));
+                order.addOrder(new OrderItem(Integer.parseInt(parts[0]), parts[1]));
             } else {
                 throw new IOException("Please check your input format");
             }
         }
         fileReader.close();
-        return allOrders;
+        return order;
     }
 
-    public AllBundles readPriceFile(String fileName) throws IOException {
-        AllBundles allBundles = new AllBundles();
+    public Bundle readPriceFile(String fileName) throws IOException {
+        Bundle allBundles = new Bundle();
         BufferedReader fileReader = readFile(fileName);
         String line;
         while ((line = fileReader.readLine()) != null) {
@@ -44,7 +44,7 @@ public class InputReader {
             String[] sliced_line = Arrays.copyOfRange(line.split(" "), startIndex, endIndex);
             List<String> line_without_symbol = Arrays.stream(sliced_line).filter(x -> !x.equals("@")).collect(Collectors.toList());
             for (int i = 0; i < line_without_symbol.size(); i = i + 2) {
-                allBundles.addBundle(new EachBundle(formatCode, Integer.parseInt(line_without_symbol.get(i)), Double.parseDouble(line_without_symbol.get(i + 1).replace("$", ""))));
+                allBundles.addBundle(new BundleItem(formatCode, Integer.parseInt(line_without_symbol.get(i)), Double.parseDouble(line_without_symbol.get(i + 1).replace("$", ""))));
             }
 
         }
