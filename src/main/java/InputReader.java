@@ -5,7 +5,6 @@ import model.Order;
 import model.OrderItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +15,6 @@ import java.util.stream.Collectors;
 @Data
 public class InputReader {
     private static final Logger logger = LogManager.getLogger(Calculation.class);
-
     public Order readInputFile(String fileName) throws IOException {
         Order order = new Order();
         BufferedReader fileReader = readFile(fileName);

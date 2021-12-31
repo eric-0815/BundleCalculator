@@ -1,6 +1,7 @@
 import model.Result;
 import model.ResultItem;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -8,8 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
-
 public class OutputWriter {
+    private static final Logger logger = LogManager.getLogger(Calculation.class);
     public void writeFile(Result result, String fileName) {
         File file = new File(fileName);
         ArrayList<ResultItem> allBundleResultArrayList = result.getAllBundleResultArrayList();
@@ -29,7 +30,7 @@ public class OutputWriter {
             }
             bufferedWriter.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
 
     }
