@@ -8,10 +8,10 @@ import java.util.Map;
 @Getter
 public class Order {
 
-    Map<Integer, String> orderItemMap = new HashMap<>();
+    Map<Long, OrderItem> orderItemMap = new HashMap<>();
 
-    public void putOrder(OrderItem orderItem) {
-        orderItemMap.put(orderItem.getOrderQuantity(), orderItem.getOrderFormatCode());
+    public void putOrder(long orderNumber, OrderItem orderItem) {
+        orderItemMap.put(orderNumber, orderItem);
     }
 
 }

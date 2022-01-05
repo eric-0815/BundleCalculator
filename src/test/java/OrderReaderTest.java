@@ -15,11 +15,11 @@ public class OrderReaderTest {
     void testOrderReader() throws IOException {
         String inputFile = "inputFile.TXT";
         Order expectedOrder = orderReader.readInputFile(inputFile);
-
+        long orderNumber = 0;
         Order actualOrder = new Order();
-        actualOrder.putOrder(new OrderItem(10, "IMG"));
-        actualOrder.putOrder(new OrderItem(15, "FLAC"));
-        actualOrder.putOrder(new OrderItem(13, "VID"));
+        actualOrder.putOrder(++orderNumber, new OrderItem(10, "IMG"));
+        actualOrder.putOrder(++orderNumber, new OrderItem(15, "FLAC"));
+        actualOrder.putOrder(++orderNumber, new OrderItem(13, "VID"));
         assertEquals(expectedOrder.getOrderItemMap(), actualOrder.getOrderItemMap());
 
         String priceFile = "priceFile.TXT";

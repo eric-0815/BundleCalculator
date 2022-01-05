@@ -21,10 +21,11 @@ public class OrderReader {
         Order order = new Order();
         BufferedReader fileReader = readFile(fileName);
         String line;
+        int orderNumber = 0;
         while ((line = fileReader.readLine()) != null) {
             String[] parts = line.split(" ");
             if (parts.length == 2) {
-                order.putOrder(new OrderItem(Integer.parseInt(parts[0]), parts[1]));
+                order.putOrder(++orderNumber, new OrderItem(Integer.parseInt(parts[0]), parts[1]));
             } else {
                 throw new IOException("Please check your input format");
             }

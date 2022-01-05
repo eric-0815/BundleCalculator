@@ -10,9 +10,10 @@ public class OrderProcessTest {
     @Test
     void CalculatorTest() {
         Order orders = new Order();
-        orders.putOrder(new OrderItem(10, "IMG"));
-        orders.putOrder(new OrderItem(15, "FLAC"));
-        orders.putOrder(new OrderItem(13, "VID"));
+        long orderNumber = 0;
+        orders.putOrder(++orderNumber, new OrderItem(10, "IMG"));
+        orders.putOrder(++orderNumber, new OrderItem(15, "FLAC"));
+        orders.putOrder(++orderNumber, new OrderItem(13, "VID"));
 
         Bundle bundles = new Bundle();
         bundles.addBundle(new BundleItem("IMG", 10, 800.0));
@@ -26,9 +27,9 @@ public class OrderProcessTest {
 
         Result expectedResult = new Result();
         Calculator calculator = new Calculator();
-        orders.getOrderItemMap().entrySet().stream().filter(x -> x.getValue().equals("IMG")).forEach(item -> expectedResult.addResult(calculator.calculateBundle(item.getKey(), bundles.getImgBundleList())));
-        orders.getOrderItemMap().entrySet().stream().filter(x -> x.getValue().equals("FLAC")).forEach(item -> expectedResult.addResult(calculator.calculateBundle(item.getKey(), bundles.getFlacBundleList())));
-        orders.getOrderItemMap().entrySet().stream().filter(x -> x.getValue().equals("VID")).forEach(item -> expectedResult.addResult(calculator.calculateBundle(item.getKey(), bundles.getVidBundleList())));
+        orders.getOrderItemMap().entrySet().stream().filter(x -> x.getValue().getOrderFormatCode().equals("IMG")).forEach(item -> expectedResult.addResult(calculator.calculateBundle(item.getValue().getOrderQuantity(), bundles.getImgBundleList())));
+        orders.getOrderItemMap().entrySet().stream().filter(x -> x.getValue().getOrderFormatCode().equals("FLAC")).forEach(item -> expectedResult.addResult(calculator.calculateBundle(item.getValue().getOrderQuantity(), bundles.getFlacBundleList())));
+        orders.getOrderItemMap().entrySet().stream().filter(x -> x.getValue().getOrderFormatCode().equals("VID")).forEach(item -> expectedResult.addResult(calculator.calculateBundle(item.getValue().getOrderQuantity(), bundles.getVidBundleList())));
 
         Result actualResult = new Result();
         List imgPriceList = new ArrayList(Collections.singletonList(BigDecimal.valueOf(800.0)));
