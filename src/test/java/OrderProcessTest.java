@@ -10,9 +10,9 @@ public class OrderProcessTest {
     @Test
     void CalculatorTest() {
         Order orders = new Order();
-        orders.addOrder(new OrderItem(10, "IMG"));
-        orders.addOrder(new OrderItem(15, "FLAC"));
-        orders.addOrder(new OrderItem(13, "VID"));
+        orders.putOrder(new OrderItem(10, "IMG"));
+        orders.putOrder(new OrderItem(15, "FLAC"));
+        orders.putOrder(new OrderItem(13, "VID"));
 
         Bundle bundles = new Bundle();
         bundles.addBundle(new BundleItem("IMG", 10, 800.0));
@@ -26,9 +26,9 @@ public class OrderProcessTest {
 
         Result expectedResult = new Result();
         Calculator calculator = new Calculator();
-        orders.getImgOrderList().forEach(item -> expectedResult.addResult(calculator.calculateBundle(item.getOrderQuantity(), bundles.getImgBundleList())));
-        orders.getFlacOrderList().forEach(item -> expectedResult.addResult(calculator.calculateBundle(item.getOrderQuantity(), bundles.getFlacBundleList())));
-        orders.getVidOrderList().forEach(item -> expectedResult.addResult(calculator.calculateBundle(item.getOrderQuantity(), bundles.getVidBundleList())));
+        orders.getOrderItemMap().entrySet().stream().filter(x -> x.getValue().equals("IMG")).forEach(item -> expectedResult.addResult(calculator.calculateBundle(item.getKey(), bundles.getImgBundleList())));
+        orders.getOrderItemMap().entrySet().stream().filter(x -> x.getValue().equals("FLAC")).forEach(item -> expectedResult.addResult(calculator.calculateBundle(item.getKey(), bundles.getFlacBundleList())));
+        orders.getOrderItemMap().entrySet().stream().filter(x -> x.getValue().equals("VID")).forEach(item -> expectedResult.addResult(calculator.calculateBundle(item.getKey(), bundles.getVidBundleList())));
 
         Result actualResult = new Result();
         List imgPriceList = new ArrayList(Collections.singletonList(BigDecimal.valueOf(800.0)));

@@ -24,7 +24,7 @@ public class OrderReader {
         while ((line = fileReader.readLine()) != null) {
             String[] parts = line.split(" ");
             if (parts.length == 2) {
-                order.addOrder(new OrderItem(Integer.parseInt(parts[0]), parts[1]));
+                order.putOrder(new OrderItem(Integer.parseInt(parts[0]), parts[1]));
             } else {
                 throw new IOException("Please check your input format");
             }

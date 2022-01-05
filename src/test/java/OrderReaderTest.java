@@ -17,10 +17,10 @@ public class OrderReaderTest {
         Order expectedOrder = orderReader.readInputFile(inputFile);
 
         Order actualOrder = new Order();
-        actualOrder.addOrder(new OrderItem(10, "IMG"));
-        actualOrder.addOrder(new OrderItem(15, "FLAC"));
-        actualOrder.addOrder(new OrderItem(13, "VID"));
-        assertEquals(expectedOrder.getOrderItems(), actualOrder.getOrderItems());
+        actualOrder.putOrder(new OrderItem(10, "IMG"));
+        actualOrder.putOrder(new OrderItem(15, "FLAC"));
+        actualOrder.putOrder(new OrderItem(13, "VID"));
+        assertEquals(expectedOrder.getOrderItemMap(), actualOrder.getOrderItemMap());
 
         String priceFile = "priceFile.TXT";
         Bundle expectedBundle = orderReader.readPriceFile(priceFile);

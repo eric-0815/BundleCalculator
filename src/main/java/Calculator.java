@@ -9,6 +9,7 @@ import java.util.*;
 
 public class Calculator {
     private static final Logger logger = LogManager.getLogger(Calculator.class);
+
     public ResultItem calculateBundle(int orderQuantity, List<BundleItem> bundleArrayList) {
         ResultItem resultItem;
         int calculatedQuantity;
