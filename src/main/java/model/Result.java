@@ -3,12 +3,13 @@ package model;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public class Result {
-    ArrayList<ResultItem> allBundleResultArrayList = new ArrayList<>();
+    List<ResultItem> resultItemList = new ArrayList<>();
 
     public void addResult(ResultItem eachBundleResult) {
-        allBundleResultArrayList.add(eachBundleResult);
+        resultItemList.add(eachBundleResult);
     }
 }

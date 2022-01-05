@@ -11,17 +11,14 @@ public class BundleCalculator {
         String priceFile = "priceFile.TXT";
         String outputFile = "outputFile.TXT";
         // Use FileHandler to open files
-        InputReader inputReader = new InputReader();
-        Order order = inputReader.readInputFile(inputFile);
-        Bundle allBundles = inputReader.readPriceFile(priceFile);
+        OrderReader orderReader = new OrderReader();
+        Order orders = orderReader.readInputFile(inputFile);
+        Bundle bundles = orderReader.readPriceFile(priceFile);
 
-        Calculation calculation = new Calculation();
-        Result result = new Result();
-        calculation.priceCalculator(result, order.getIMGOrderList(), allBundles.getIMGBundleList());
-        calculation.priceCalculator(result, order.getFlacOrderList(), allBundles.getFlacBundleList());
-        calculation.priceCalculator(result, order.getVIDOrderList(), allBundles.getVIDBundleList());
+        OrderProcess orderProcess = new OrderProcess();
+        Result results = orderProcess.process(orders, bundles);
 
-        OutputWriter fileWriter = new OutputWriter();
-        fileWriter.writeFile(result, outputFile);
+        OrderWriter orderWriter = new OrderWriter();
+        orderWriter.writeFile(results, outputFile);
     }
 }

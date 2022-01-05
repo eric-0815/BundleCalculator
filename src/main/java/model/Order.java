@@ -3,37 +3,38 @@ package model;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
 public class Order {
-    ArrayList<OrderItem> allOrderArrayList = new ArrayList<OrderItem>();
+    List<OrderItem> orderItems = new ArrayList<>();
 
     public void addOrder(OrderItem orderItem) {
-        allOrderArrayList.add(orderItem);
+        orderItems.add(orderItem);
     }
 
-    private ArrayList<OrderItem> sameFormatCodeHelper(String formatCode) {
-        ArrayList<OrderItem> sameFormatCodeArrayList = new ArrayList<OrderItem>();
-        sameFormatCodeArrayList = (ArrayList<OrderItem>) allOrderArrayList.stream().filter(x -> x.getOrderFormatCode().equals(formatCode)).collect(Collectors.toList());
+    private List<OrderItem> sameFormatCodeHelper(String formatCode) {
+        List<OrderItem> sameFormatCodeArrayList;
+        sameFormatCodeArrayList = orderItems.stream().filter(x -> x.getOrderFormatCode().equals(formatCode)).collect(Collectors.toList());
         return sameFormatCodeArrayList;
     }
 
-    public ArrayList<OrderItem> getIMGOrderList() {
-        ArrayList<OrderItem> IMGArrayList = new ArrayList<>();
-        IMGArrayList = sameFormatCodeHelper("IMG");
-        return IMGArrayList;
+    public List<OrderItem> getImgOrderList() {
+        List<OrderItem> imgArrayList;
+        imgArrayList = sameFormatCodeHelper("IMG");
+        return imgArrayList;
     }
 
-    public ArrayList<OrderItem> getFlacOrderList() {
-        ArrayList<OrderItem> FlacOrderList = new ArrayList<>();
-        FlacOrderList = sameFormatCodeHelper("FLAC");
-        return FlacOrderList;
+    public List<OrderItem> getFlacOrderList() {
+        List<OrderItem> flacOrderList;
+        flacOrderList = sameFormatCodeHelper("FLAC");
+        return flacOrderList;
     }
 
-    public ArrayList<OrderItem> getVIDOrderList() {
-        ArrayList<OrderItem> VIDOrderList = new ArrayList<>();
-        VIDOrderList = sameFormatCodeHelper("VID");
-        return VIDOrderList;
+    public List<OrderItem> getVidOrderList() {
+        List<OrderItem> vidOrderList;
+        vidOrderList = sameFormatCodeHelper("VID");
+        return vidOrderList;
     }
 }

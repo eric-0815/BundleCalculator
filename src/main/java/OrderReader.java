@@ -5,6 +5,7 @@ import model.Order;
 import model.OrderItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -13,8 +14,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
-public class InputReader {
-    private static final Logger logger = LogManager.getLogger(Calculation.class);
+public class OrderReader {
+    private static final Logger logger = LogManager.getLogger(OrderReader.class);
+
     public Order readInputFile(String fileName) throws IOException {
         Order order = new Order();
         BufferedReader fileReader = readFile(fileName);
@@ -51,7 +53,7 @@ public class InputReader {
 
     private BufferedReader readFile(String fileName) throws IOException {
         File file = new File(fileName);
-        BufferedReader fileReader = null;
+        BufferedReader fileReader;
         try {// create a new file if the file does not exist
             if (!file.exists()) {
                 file.createNewFile();

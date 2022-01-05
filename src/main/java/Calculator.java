@@ -1,26 +1,19 @@
 import model.BundleItem;
-import model.OrderItem;
-import model.Result;
 import model.ResultItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 
-public class Calculation {
-    private static final Logger logger = LogManager.getLogger(Calculation.class);
-
-    public void priceCalculator(Result result, ArrayList<OrderItem> orderArrayList, ArrayList<BundleItem> bundleArrayList) {
-
-        ResultItem eachBundleResult = null;
-        boolean gotResult = false;
-        int calculatedQuantity = 0;
-        Double finalPrice = 0.0;
-        HashMap<Integer, Integer> calculationProcessMap = new HashMap<>();
-        ArrayList<Double> priceList = new ArrayList<>();
-        int orderQuantity = orderArrayList.get(0).getOrderQuantity();
-        String orderFormatCode = orderArrayList.get(0).getOrderFormatCode();
+public class Calculator {
+    private static final Logger logger = LogManager.getLogger(Calculator.class);
+    public ResultItem calculateBundle(int orderQuantity, List<BundleItem> bundleArrayList) {
+        ResultItem resultItem;
+        int calculatedQuantity;
+        Map<Integer, Integer> calculationProcessMap = new HashMap<>();
+        List<BigDecimal> priceList = new ArrayList<>();
         try {
             for (int i = 0; i < bundleArrayList.size(); i++) {
                 int bundleQuantity = bundleArrayList.get(i).getBundleQuantity();
@@ -30,20 +23,17 @@ public class Calculation {
                     Double nextBundlePrice = bundleArrayList.get(j).getBundlePrice();
                     for (int k = 0; k < bundleArrayList.size() * bundleArrayList.size(); k++) {
                         calculatedQuantity = bundleQuantity * (i + 1) + nextBundleQuantity * (k);
-                        if (calculatedQuantity == orderQuantity && !gotResult) {
-                            finalPrice = (bundlePrice * (i + 1) + nextBundlePrice * (k));
+                        if (calculatedQuantity == orderQuantity) {
                             calculationProcessMap.put(bundleQuantity, (i + 1));
-                            priceList.add(bundlePrice * (i + 1));
+                            priceList.add(BigDecimal.valueOf(bundlePrice * (i + 1)));
                             if (k != 0) {
                                 calculationProcessMap.put(nextBundleQuantity, (k));
-                                priceList.add(nextBundlePrice);
+                                priceList.add(BigDecimal.valueOf(nextBundlePrice));
                             }
-                            HashMap<Integer, Integer> reverseCalculationProcessMap = new LinkedHashMap<>();
+                            Map<Integer, Integer> reverseCalculationProcessMap = new LinkedHashMap<>();
                             calculationProcessMap.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.reverseOrder())).forEachOrdered(x -> reverseCalculationProcessMap.put(x.getKey(), x.getValue()));
-
-                            eachBundleResult = new ResultItem(orderFormatCode, orderQuantity, finalPrice, priceList, reverseCalculationProcessMap);
-                            result.addResult(eachBundleResult);
-                            gotResult = true;
+                            resultItem = new ResultItem(bundleArrayList.get(i).getBundleFormatCode(), priceList, reverseCalculationProcessMap);
+                            return resultItem;
                         }
                     }
                 }
@@ -51,6 +41,7 @@ public class Calculation {
         } catch (Exception e) {
             logger.error(e);
         }
+        return null;
     }
 
 }
